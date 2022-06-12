@@ -1,0 +1,72 @@
+// create a question answer JSON Schema
+
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "qeuestion_url",
+    "title": "Question Model",
+    "description": "This holds the questions that is asked to the user",
+    "type": "object",
+    "properties": {
+        "id":{
+            "type": "integer",
+            "description": "The id of the question, unique identifier",
+            "example": 1
+        },
+        "question":{
+            "type": "string",
+            "description": "The question that is asked to the user",
+            "example": "Do you smoke?"
+        },
+        "description":{
+            "type": "string",
+            "description": "The description of the question",
+            "example": "This will help us give exercises to prevent fine lines and other issues that arise due to the action of smoking. However, the best remedy is to stop smoking",
+            "nullable": true
+        },
+        "answers":{
+            "type": "array",
+            "description": "The answers that are given to the question",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id":{
+                        "type": "integer",
+                        "description": "The id of the answer, unique identifier",
+                        "example": 1
+                    },
+                    "answer":{
+                        "type": "string",
+                        "description": "The answer that is given to the question",
+                        "example": "Yes"
+                    },
+                    "points":{
+                        "type": "number",
+                        "description": "The points that is given to the answer",
+                        "example": 10
+                    }
+                },
+                "required":["id","answer","points"]
+            }
+        }
+    },
+    "required":["id","question","answers"]
+}
+
+//response from json
+// {
+//     "id": 1,
+//     "question": "Do you smoke?",
+//     "description": "This will help us give exercises to prevent fine lines and other issues that arise due to the action of smoking. However, the best remedy is to stop smoking",
+//     "answers": [
+//         {
+//             "id": 1,
+//             "answer": "Yes",
+//             "points": 10
+//         },
+//         {
+//             "id": 2,
+//             "answer": "No",
+//             "points": 0
+//         }
+//     ]
+// }
