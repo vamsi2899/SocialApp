@@ -31,3 +31,12 @@ Login
 Register
 ![Creat Account](https://user-images.githubusercontent.com/107323836/176274162-9f2b8291-418b-4bd2-b34f-8922ac5b236b.jpeg)
 
+Create Post
+![Creat post 2](https://user-images.githubusercontent.com/107323836/176757484-a98a56aa-2bda-40bd-ab40-65ca3e9bf8fe.jpeg)
+
+Edit Post
+![Poat edit](https://user-images.githubusercontent.com/107323836/176757632-b8b07c6d-9df0-4f62-9a2f-823a6d311ad3.jpeg)
+
+Home profile
+![Creat post4](https://user-images.githubusercontent.com/107323836/176757715-d3355dda-0fb1-4c93-be7e-1fde6e224268.jpeg)
+
