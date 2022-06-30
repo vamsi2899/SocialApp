@@ -1,20 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { postData } from "../main";
+
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    postData("/user/login", "POST", user)
+      .then((res) => {
+        if (res.success) {
+          localStorage.setItem("user", JSON.stringify(res.user));
+          navigate("/profile");
+        } else {
+          console.log(`Error! ${res.message}`);
+        }
+      })
+      .catch((error) => {
+        console.log(`Error! ${error.message}`);
+        // alert.call()
+      });
+  };
+
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
   return (
     <div className="login-container">
       <div className="card login-form">
         <div className="card-body">
           <h3 className="card-title text-center">Log In</h3>
           <div className="card-text">
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-group mb-2">
                 <label htmlFor="email">Email address</label>
                 <input
                   type="email"
                   className="form-control form-control-sm"
                   id="email"
+                  name="email"
+                  onChange={onChange}
                   aria-describedby="emailHelp"
                   required
                 />
@@ -26,6 +56,8 @@ export default function Login() {
                   type="password"
                   className="form-control form-control-sm"
                   id="password"
+                  name="password"
+                  onChange={onChange}
                   required
                 />
               </div>

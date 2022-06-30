@@ -1,20 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { postData } from "../main";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    postData("/user/register", "POST", user)
+      .then((res) => {
+        if (res.success) {
+          localStorage.setItem("user", JSON.stringify(res.user));
+          navigate("/profile");
+        }
+      })
+      .catch((error) => {
+        console.log(`Error! ${error.message}`);
+      });
+  };
+
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
   return (
     <div className="login-container">
       <div className="card login-form">
         <div className="card-body">
           <h3 className="card-title text-center">Create Account</h3>
           <div className="card-text">
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-group mb-2">
                 <label htmlFor="username">Username</label>
                 <input
                   type="text"
                   className="form-control form-control-sm"
                   id="username"
+                  name="username"
+                  onChange={onChange}
                   required
                 />
               </div>
@@ -25,6 +53,8 @@ export default function Register() {
                   type="email"
                   className="form-control form-control-sm"
                   id="email"
+                  name="email"
+                  onChange={onChange}
                   aria-describedby="emailHelp"
                   required
                 />
@@ -36,6 +66,8 @@ export default function Register() {
                   type="password"
                   className="form-control form-control-sm"
                   id="password"
+                  name="password"
+                  onChange={onChange}
                   required
                 />
               </div>
