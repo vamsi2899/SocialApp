@@ -6,6 +6,7 @@ import Profile from "./components/profile";
 import Register from "./components/register";
 import Navbar from "./layout/navbar";
 
+
 function App() {
   return (
     <BrowserRouter>

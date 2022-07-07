@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
-export default function UpdatePostModal(props) {
+export default function PostModal(props) {
   const [title, setTitle] = useState("");
 
-  useEffect(() => {
-    if (props.post) setTitle(props.post.title);
-  }, [props]);
-
   const onSubmit = () => {
-    props.createPost(title, props.post._id);
+    props.createPost(title);
     props.onHide();
     setTitle("");
   };
@@ -23,7 +19,7 @@ export default function UpdatePostModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-         Update Post
+          Modal heading
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
